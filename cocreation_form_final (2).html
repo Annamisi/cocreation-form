@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бизнес-профиль участницы — Co.Creation Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #faf7f2; font-family: 'DM Sans', sans-serif; color: #2c2418; min-height: 100vh; }
+  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 10% 20%, rgba(193,127,82,0.08) 0%, transparent 50%), radial-gradient(ellipse at 90% 80%, rgba(196,181,165,0.15) 0%, transparent 50%); pointer-events: none; z-index: 0; }
+  .fw { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; padding: 40px 24px 80px; }
+  .hdr { text-align: center; margin-bottom: 32px; }
+  .logo-wrap { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 20px; }
+  .logo-text-wrap { text-align: left; }
+  .logo-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 300; font-style: italic; color: #2c2418; letter-spacing: 1px; line-height: 1.2; }
+  .logo-name span { color: #C17F52; }
+  .logo-sub { font-size: 8px; font-weight: 300; color: #9e8e7e; letter-spacing: 3px; text-transform: uppercase; margin-top: 2px; }
+  .orn { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; }
+  .ol { width: 48px; height: 1px; background: linear-gradient(to right, transparent, #c4b5a5); }
+  .ol.r { background: linear-gradient(to left, transparent, #c4b5a5); }
+  .od { width: 5px; height: 5px; border-radius: 50%; background: #C17F52; }
+  .hdr h1 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; color: #2c2418; margin: 0 0 8px; line-height: 1.3; }
+  .hdr p { font-size: 0.85rem; color: #9e8e7e; font-weight: 300; line-height: 1.7; }
+  .intro-note { background: rgba(193,127,82,0.07); border: 1px solid rgba(193,127,82,0.2); border-radius: 12px; padding: 14px 18px; margin-bottom: 28px; font-size: 0.82rem; color: #8b7355; line-height: 1.7; text-align: center; }
+  .fc { background: rgba(255,255,255,0.75); border: 1px solid rgba(196,181,165,0.35); border-radius: 18px; padding: 40px 36px; }
+  .sec { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 600; color: #C17F52; letter-spacing: 0.14em; text-transform: uppercase; margin: 32px 0 16px; display: flex; align-items: center; gap: 10px; }
+  .sec:first-of-type { margin-top: 0; }
+  .sec::after { content: ''; flex: 1; height: 1px; background: #e8ddd0; }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: 0.75rem; font-weight: 500; color: #8b7355; margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .hint { font-size: 0.75rem; color: #9e8e7e; font-weight: 300; font-style: italic; margin-bottom: 7px; display: block; text-transform: none; letter-spacing: 0; }
+  .req { color: #C17F52; margin-left: 2px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  input[type=text], input[type=email], input[type=tel], input[type=url], textarea, select { width: 100%; padding: 11px 14px; background: #f5f0e8; border: 1px solid #e8ddd0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: #2c2418; outline: none; box-sizing: border-box; transition: border-color 0.2s, background 0.2s; }
+  input:focus, textarea:focus, select:focus { border-color: #C17F52; background: #fff; }
+  textarea { resize: vertical; min-height: 82px; line-height: 1.6; }
+  select { cursor: pointer; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b7355' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  .divider { border: none; border-top: 1px solid #e8ddd0; margin: 28px 0; }
+  .cbgroup { display: flex; flex-wrap: wrap; gap: 9px; }
+  .cbitem { display: flex; align-items: center; gap: 7px; cursor: pointer; font-size: 0.84rem; color: #3d2f20; font-weight: 300; }
+  .cbitem input[type=checkbox] { width: 17px; height: 17px; border: 1.5px solid #c4b5a5; border-radius: 5px; background: #f5f0e8; -webkit-appearance: none; appearance: none; cursor: pointer; position: relative; flex-shrink: 0; transition: background 0.2s, border-color 0.2s; }
+  .cbitem input[type=checkbox]:checked { background: #C17F52; border-color: #C17F52; }
+  .cbitem input[type=checkbox]:checked::after { content: ''; position: absolute; top: 3px; left: 5px; width: 5px; height: 8px; border: 1.5px solid #fff; border-top: none; border-left: none; transform: rotate(40deg); }
+  .rbgroup { display: flex; gap: 10px; flex-wrap: wrap; }
+  .rbitem { display: flex; align-items: center; gap: 7px; cursor: pointer; font-size: 0.84rem; color: #3d2f20; font-weight: 300; }
+  .rbitem input[type=radio] { width: 17px; height: 17px; border: 1.5px solid #c4b5a5; border-radius: 50%; background: #f5f0e8; -webkit-appearance: none; appearance: none; cursor: pointer; position: relative; flex-shrink: 0; transition: border-color 0.2s; }
+  .rbitem input[type=radio]:checked { border-color: #C17F52; }
+  .rbitem input[type=radio]:checked::after { content: ''; position: absolute; top: 3px; left: 3px; width: 9px; height: 9px; border-radius: 50%; background: #C17F52; }
+  .ccount { text-align: right; font-size: 0.7rem; color: #9e8e7e; margin-top: 3px; }
+  .upload-box { border: 1.5px dashed #c4b5a5; border-radius: 10px; padding: 18px; text-align: center; background: #f5f0e8; cursor: pointer; transition: border-color 0.2s; }
+  .upload-box:hover { border-color: #C17F52; }
+  .upload-box input[type=file] { display: none; }
+  .upload-label { font-size: 0.82rem; color: #8b7355; cursor: pointer; }
+  .upload-label span { color: #C17F52; text-decoration: underline; }
+  .upload-name { font-size: 0.78rem; color: #C17F52; margin-top: 6px; display: none; }
+  .photo-preview { width: 80px; height: 80px; border-radius: 50%; background: #e8ddd0; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .photo-preview img { width: 100%; height: 100%; object-fit: cover; display: none; }
+  .photo-icon { font-size: 28px; color: #c4b5a5; }
+  .submit-area { margin-top: 36px; text-align: center; }
+  .privacy { font-size: 0.75rem; color: #9e8e7e; margin-top: 14px; line-height: 1.6; }
+  .privacy a { color: #8b7355; text-decoration: underline; text-underline-offset: 2px; }
+  .privacy a:hover { color: #C17F52; }
+  .sbtn { background: #C17F52; color: #fff; border: none; padding: 14px 48px; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; cursor: pointer; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 20px rgba(193,127,82,0.3); }
+  .sbtn:hover { background: #b0703f; transform: translateY(-1px); }
+  .success { display: none; text-align: center; padding: 32px 16px; }
+  .success.show { display: block; }
+  .success h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: #2c2418; margin: 12px 0 8px; }
+  .success p { color: #9e8e7e; font-size: 0.88rem; line-height: 1.6; }
+  @media (max-width: 500px) { .fc { padding: 24px 18px; } .row2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="fw">
+  <div class="hdr">
+    <div class="logo-wrap">
+      <svg width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(27,27)">
+          <circle cx="0"   cy="0"    r="24"  fill="#C17F52" fill-opacity="0.02" stroke="#C17F52" stroke-width="0.7"  opacity="0.18"/>
+          <circle cx="9"   cy="0"    r="15"  fill="#C17F52" fill-opacity="0.04" stroke="#C17F52" stroke-width="0.78" opacity="0.26"/>
+          <circle cx="9"   cy="-6"   r="9"   fill="#C17F52" fill-opacity="0.07" stroke="#C17F52" stroke-width="0.86" opacity="0.36"/>
+          <circle cx="3"   cy="-6"   r="6"   fill="#C17F52" fill-opacity="0.10" stroke="#C17F52" stroke-width="0.92" opacity="0.48"/>
+          <circle cx="3"   cy="-2"   r="3.5" fill="#C17F52" fill-opacity="0.14" stroke="#C17F52" stroke-width="1"    opacity="0.60"/>
+          <circle cx="5"   cy="-2"   r="2"   fill="#C17F52" fill-opacity="0.19" stroke="#C17F52" stroke-width="1.08" opacity="0.72"/>
+          <circle cx="5"   cy="-3.5" r="1.2" fill="#C17F52" fill-opacity="0.26" stroke="#C17F52" stroke-width="1.1"  opacity="0.84"/>
+          <circle cx="5"   cy="-3.5" r="1.8" fill="#C17F52"/>
+        </g>
+      </svg>
+      <div class="logo-text-wrap">
+        <div class="logo-name"><span>Co.</span>Creation Club</div>
+        <div class="logo-sub">строим будущее вместе</div>
+      </div>
+    </div>
+    <div class="orn"><div class="ol"></div><div class="od"></div><div class="ol r"></div></div>
+    <h1>Бизнес-профиль<br><em>участницы клуба</em></h1>
+    <p>Заполни анкету — и я подготовлю твою визитную карточку<br>для клубной базы. Не нужно беспокоиться о формулировках 🤝</p>
+  </div>
+
+  <div class="intro-note">
+    Анкета занимает около 5 минут.<br>Я подготовлю твой профиль и добавлю его в общую базу.
+  </div>
+
+  <div class="fc">
+    <form id="pf" action="https://formspree.io/f/mdawbjjb" method="POST" enctype="multipart/form-data">
+
+      <p class="sec">О тебе</p>
+      <div class="row2">
+        <div class="field"><label>Имя <span class="req">*</span></label><input type="text" name="imya" placeholder="Как тебя зовут" required></div>
+        <div class="field"><label>Фамилия <span class="req">*</span></label><input type="text" name="familiya" placeholder="Твоя фамилия" required></div>
+      </div>
+      <div class="field"><label>Город / страна</label><input type="text" name="gorod" placeholder="Например: Москва, Берлин, Дубай"></div>
+
+      <p class="sec">Твой род деятельности</p>
+      <div class="field">
+        <label>Твоя роль <span class="req">*</span></label>
+        <span class="hint">Название бизнеса или твоя роль в компании</span>
+        <input type="text" name="rol" placeholder="Например: основатель студии дизайна / HR-директор в IT" required>
+      </div>
+      <div class="field"><label>Название проекта или компании <span class="req">*</span></label><input type="text" name="nazvanie" placeholder="Официальное или рабочее название" required></div>
+      <div class="field"><label>Сфера деятельности</label>
+        <select name="sfera">
+          <option value="" disabled selected>Выбери ближайшую</option>
+          <option>Коучинг / менторство / психология</option>
+          <option>Красота / здоровье / wellness</option>
+          <option>Мода / одежда / украшения</option>
+          <option>Маркетинг / SMM / PR</option>
+          <option>Образование / обучение</option>
+          <option>Дизайн / творчество / искусство</option>
+          <option>Питание / кулинария</option>
+          <option>Финансы / бухгалтерия / юридические услуги</option>
+          <option>IT / технологии</option>
+          <option>Недвижимость / инвестиции</option>
+          <option>Путешествия / ивенты</option>
+          <option>Другое</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Чем ты занимаешься <span class="req">*</span></label>
+        <span class="hint">Опиши своими словами — просто и честно. Мы это упакуем 😊</span>
+        <textarea id="wyd" name="zanyatost" maxlength="400" placeholder="Например: помогаю женщинам выстраивать бренд в соцсетях…" required></textarea>
+        <div class="ccount"><span id="wyd-c">0</span> / 400</div>
+      </div>
+      <div class="field">
+        <label>Для кого твой продукт или услуга</label>
+        <input type="text" name="auditoriya" placeholder="Например: предприниматели, семьи с доходом выше среднего…">
+      </div>
+
+      <hr class="divider">
+      <p class="sec">О себе</p>
+      <div class="field">
+        <label>Твоё облако интересов</label>
+        <span class="hint">Чем интересуешься помимо работы и о чём ты можешь разговаривать часами?</span>
+        <textarea name="interesy" placeholder="Например: йога, путешествия, чтение, живопись…" maxlength="300"></textarea>
+      </div>
+      <div class="field">
+        <label>Основной фокус на ближайшие 6 месяцев</label>
+        <span class="hint">Что сейчас в приоритете — в бизнесе или в жизни</span>
+        <textarea name="fokus" placeholder="Например: запуск нового продукта, выход на международный рынок…" maxlength="300"></textarea>
+      </div>
+      <div class="field">
+        <label>Чем ты можешь быть полезна участницам клуба</label>
+        <textarea id="offer" name="polza" maxlength="300" placeholder="Например: консультация по налогам, помощь с упаковкой бренда…"></textarea>
+        <div class="ccount"><span id="offer-c">0</span> / 300</div>
+      </div>
+      <div class="field">
+        <label>Готова ли ты предложить спецусловия для участниц клуба</label>
+        <span class="hint">На свои услуги или продукты</span>
+        <div class="rbgroup">
+          <label class="rbitem"><input type="radio" name="spetsuslovia" value="Да"><span>Да</span></label>
+          <label class="rbitem"><input type="radio" name="spetsuslovia" value="Нет"><span>Нет</span></label>
+          <label class="rbitem"><input type="radio" name="spetsuslovia" value="По договорённости"><span>По договорённости</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Что для тебя важно получить в клубе</label>
+        <div class="cbgroup">
+          <label class="cbitem"><input type="checkbox" name="tseli" value="Клиенты"><span>Клиенты</span></label>
+          <label class="cbitem"><input type="checkbox" name="tseli" value="Партнёрства"><span>Партнёрства</span></label>
+          <label class="cbitem"><input type="checkbox" name="tseli" value="Сотрудники / подрядчики"><span>Сотрудники / подрядчики</span></label>
+          <label class="cbitem"><input type="checkbox" name="tseli" value="Обмен опытом"><span>Обмен опытом</span></label>
+          <label class="cbitem"><input type="checkbox" name="tseli" value="Коллаборации"><span>Коллаборации</span></label>
+          <label class="cbitem"><input type="checkbox" name="tseli" value="Знания / инструменты"><span>Знания / инструменты</span></label>
+          <label class="cbitem"><input type="checkbox" name="tseli" value="Поддержка и общение"><span>Поддержка и общение</span></label>
+        </div>
+      </div>
+      <div class="field"><label>Любые комментарии и пожелания</label><textarea name="kommentarii" placeholder="Всё, что важно, но не поместилось выше…" maxlength="300"></textarea></div>
+
+      <hr class="divider">
+      <p class="sec">Контакты</p>
+      <div class="row2">
+        <div class="field"><label>Телефон / WhatsApp</label><input type="tel" name="telefon" placeholder="+7 (или другой)"></div>
+        <div class="field"><label>E-mail</label><input type="email" name="email" placeholder="для рабочих запросов"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Instagram</label><input type="text" name="instagram" placeholder="@username"></div>
+        <div class="field"><label>Telegram</label><input type="text" name="telegram" placeholder="@username или ссылка"></div>
+      </div>
+      <div class="field"><label>Сайт</label><input type="url" name="sayt" placeholder="https://твой-сайт.ru"></div>
+      <div class="field">
+        <label>Прайс или описание услуг</label>
+        <span class="hint">Если нет сайта — загрузи файл с услугами (PDF, Word)</span>
+        <div class="upload-box" onclick="document.getElementById('services-file').click()">
+          <input type="file" id="services-file" name="fajl_uslug" accept=".pdf,.doc,.docx" onchange="showFileName(this,'services-name')">
+          <div class="upload-label">Нажми, чтобы <span>выбрать файл</span></div>
+          <div class="upload-name" id="services-name"></div>
+        </div>
+      </div>
+
+      <hr class="divider">
+      <p class="sec">Фото</p>
+      <div class="field">
+        <span class="hint" style="margin-bottom:12px;">Загрузи фото для своей карточки в базе — желательно портретное</span>
+        <div class="upload-box" onclick="document.getElementById('photo-file').click()">
+          <input type="file" id="photo-file" name="foto" accept="image/*" onchange="previewPhoto(this)">
+          <div class="photo-preview" id="photo-preview">
+            <span class="photo-icon">☺</span>
+            <img id="photo-img" src="" alt="">
+          </div>
+          <div class="upload-label">Нажми, чтобы <span>загрузить фото</span></div>
+          <div class="upload-name" id="photo-name"></div>
+        </div>
+      </div>
+
+      <div class="submit-area">
+        <button type="submit" class="sbtn">Отправить анкету</button>
+        <p class="privacy">
+          Нажимая кнопку, ты соглашаешься с&nbsp;<a href="#">политикой обработки персональных данных</a>
+        </p>
+      </div>
+    </form>
+
+    <div class="success" id="ok">
+      <div style="font-size:2rem">🤝</div>
+      <h2>Анкета отправлена!</h2>
+      <p>Спасибо — скоро подготовлю твою визитную карточку для клубной базы.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('wyd').addEventListener('input', function(){ document.getElementById('wyd-c').textContent = this.value.length; });
+  document.getElementById('offer').addEventListener('input', function(){ document.getElementById('offer-c').textContent = this.value.length; });
+  function showFileName(input, nameId) {
+    var el = document.getElementById(nameId);
+    if (input.files && input.files[0]) { el.textContent = input.files[0].name; el.style.display = 'block'; }
+  }
+  function previewPhoto(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var img = document.getElementById('photo-img');
+        var icon = document.querySelector('.photo-icon');
+        img.src = e.target.result; img.style.display = 'block'; icon.style.display = 'none';
+        showFileName(input, 'photo-name');
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  document.getElementById('pf').addEventListener('submit', function(e) {
+    var action = this.getAttribute('action');
+    if (!action) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('ok').classList.add('show');
+    }
+  });
+</script>
+</body>
+</html>
