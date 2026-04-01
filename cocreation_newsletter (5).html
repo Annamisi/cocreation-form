@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --burgundy: #8B1A4A;
+  --burgundy-light: #A93268;
+  --gold: #C4956A;
+  --gold-light: #E8D5C0;
+  --cream: #FDF8F4;
+  --cream-dark: #F5EDE6;
+  --ink: #2A1810;
+  --ink-light: #5A4A40;
+  --rule: #C4956A;
+}
+
+body {
+  background: #E8E0D8;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--ink);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.newspaper {
+  max-width: 780px;
+  width: 100%;
+  background: var(--cream);
+  box-shadow: 0 4px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.masthead {
+  background: var(--burgundy);
+  padding: 28px 40px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.masthead::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px);
+}
+.masthead-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+  font-family: 'Source Sans 3', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light);
+  position: relative; z-index: 1;
+}
+.masthead h1 {
+  font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; color: #fff;
+  letter-spacing: 3px; text-transform: uppercase; line-height: 1; margin-bottom: 6px;
+  position: relative; z-index: 1;
+}
+.masthead h1 span { color: var(--gold); }
+.masthead-subtitle {
+  font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--gold-light); letter-spacing: 1px;
+  position: relative; z-index: 1;
+}
+.gold-rule { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.edition-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 40px; border-bottom: 1px solid var(--gold-light);
+  font-family: 'Source Sans 3', sans-serif; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-light);
+}
+.edition-bar .edition-label { font-weight: 700; color: var(--burgundy); }
+
+.content { padding: 30px 40px 10px; }
+
+.headline-section { margin-bottom: 30px; padding-bottom: 28px; border-bottom: 3px double var(--rule); }
+.headline-section h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--ink); line-height: 1.2; margin-bottom: 16px; }
+.headline-intro { font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 1.6; color: var(--ink); font-style: italic; }
+
+.article { margin-bottom: 28px; }
+.article-tag {
+  display: inline-block; font-family: 'Source Sans 3', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--burgundy);
+  margin-bottom: 8px; padding: 3px 8px; border: 1px solid var(--burgundy);
+}
+.article-tag-gold {
+  display: inline-block; font-family: 'Source Sans 3', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 8px; padding: 3px 8px; border: 1px solid var(--gold);
+}
+.article h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 12px; }
+.article p { font-family: 'Source Sans 3', sans-serif; font-size: 15px; line-height: 1.7; color: var(--ink-light); margin-bottom: 10px; }
+.article p strong { color: var(--ink); font-weight: 600; }
+.highlight {
+  font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--burgundy);
+  line-height: 1.5; padding: 12px 0 12px 18px; border-left: 3px solid var(--gold); margin: 14px 0;
+}
+
+.section-divider { border: none; border-top: 3px double var(--rule); margin: 30px 0; }
+
+/* === NEW FOCUS SECTION === */
+.focus-section { padding: 28px 0 10px; margin-bottom: 10px; }
+.focus-section > h3 {
+  font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--ink);
+  margin-bottom: 24px; text-align: center;
+}
+
+.focus-card {
+  position: relative;
+  margin-bottom: 24px;
+  padding: 24px 28px;
+  background: #fff;
+  border: 1px solid var(--gold-light);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.focus-number {
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--burgundy);
+  color: #fff;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+}
+
+.focus-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  margin-top: 6px;
+}
+
+.focus-card p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+
+.focus-card p strong { color: var(--ink); }
+
+.focus-card .date-badge {
+  display: inline-block; margin-top: 10px; padding: 4px 12px; background: var(--burgundy); color: #fff;
+  font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+}
+
+.focus-card a { color: var(--burgundy); font-size: 13px; display: inline-block; margin-top: 8px; }
+
+.focus-wow {
+  display: inline-block;
+  background: var(--gold-light);
+  color: var(--burgundy);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.continuing-card {
+  padding: 20px 28px;
+  background: var(--cream-dark);
+  border-left: 4px solid var(--gold);
+  margin-bottom: 20px;
+}
+.continuing-card h4 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.continuing-card p { font-family: 'Source Sans 3', sans-serif; font-size: 14px; line-height: 1.6; color: var(--ink-light); }
+
+/* CALENDAR */
+.calendar-section {
+  margin: 30px 0; padding: 30px 0;
+  border-top: 3px double var(--rule); border-bottom: 3px double var(--rule);
+}
+.calendar-section > h3 {
+  font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--ink);
+  margin-bottom: 20px; text-align: center;
+}
+.cal-wrapper { padding: 0; }
+.cal-grid { display: flex; gap: 12px; }
+.cal-table { flex: 1; border-collapse: collapse; }
+.cal-table th {
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: #555;
+  padding: 6px 3px; text-align: center; border-bottom: 2px solid var(--burgundy); text-transform: uppercase;
+}
+.cal-table td {
+  width: 14.28%; height: 90px; vertical-align: top; padding: 3px 5px;
+  border: 1px solid #e8e8e8; position: relative; font-size: 11px;
+}
+.cal-table td.empty { background: #faf8f5; border-color: #f0ede8; }
+.cal-day { font-size: 13px; font-weight: 600; color: #555; margin-bottom: 3px; }
+.cal-badge { border-radius: 3px; padding: 3px 5px; margin-top: 2px; font-size: 10px; line-height: 1.3; }
+.cal-pink { background: #f0c4c8; color: #5a1a1a; }
+.cal-blue { background: #c8daf0; color: #1a2a5a; }
+.cal-yellow { background: #f5e6a3; color: #5a4a1a; }
+.cal-time { font-size: 9px; display: flex; align-items: center; gap: 2px; margin-bottom: 1px; }
+.cal-title { font-weight: 600; font-size: 10px; line-height: 1.2; }
+.cal-sub { font-size: 9px; font-weight: 400; color: #666; line-height: 1.2; }
+.cal-speaker { font-size: 9px; color: #666; font-style: italic; }
+.cal-star { color: #b8860b; font-size: 14px; position: absolute; top: 1px; left: 3px; }
+.cal-day.has-star { margin-left: 16px; }
+.cal-legend { width: 140px; display: flex; flex-direction: column; gap: 6px; padding-top: 36px; }
+.cal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 500; color: #444; }
+.cal-legend-swatch { width: 18px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+.cal-legend-note { font-size: 9px; color: #777; margin-top: 10px; line-height: 1.4; display: flex; align-items: flex-start; gap: 4px; }
+.cal-footnotes { display: flex; gap: 12px; margin-top: 18px; }
+.cal-fn-card { flex: 1; border: 1px solid #e0e0e0; border-radius: 5px; padding: 12px; font-size: 11px; line-height: 1.5; }
+.cal-fn-card h4 { font-size: 11px; font-weight: 700; margin-bottom: 6px; }
+.cal-fn-border-pink { border-top: 3px solid #f0c4c8; }
+.cal-fn-border-blue { border-top: 3px solid #c8daf0; }
+.cal-fn-border-rose { border-top: 3px solid #e8a0a8; }
+.cal-fn-card a { color: var(--burgundy); }
+
+/* TWO COLUMN */
+.updates-grid { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0 28px; margin-bottom: 20px; }
+.grid-divider { background: linear-gradient(180deg, var(--rule), transparent); }
+
+.price-block {
+  background: var(--cream-dark); padding: 14px 18px; border-radius: 4px; margin: 14px 0; font-size: 15px; text-align: center;
+}
+.price-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--burgundy);
+  display: block;
+  margin-bottom: 3px;
+}
+.price-rub {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  display: block;
+}
+
+.deadline-banner {
+  background: var(--burgundy); color: #fff; text-align: center; padding: 14px 20px; margin: 16px 0;
+  font-family: 'Source Sans 3', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.5px;
+}
+.deadline-banner strong { color: var(--gold); font-size: 17px; }
+
+.founding-block {
+  background: linear-gradient(135deg, var(--cream-dark), #f0e6dc);
+  border: 1px solid var(--gold-light);
+  padding: 16px 18px; border-radius: 4px; margin: 14px 0;
+  font-size: 14px; line-height: 1.6; color: var(--ink-light);
+}
+.founding-block strong { color: var(--burgundy); }
+
+.doors-open {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--burgundy);
+  margin-top: 12px;
+}
+
+.footnote {
+  font-family: 'Source Sans 3', sans-serif; font-size: 13px; color: var(--ink-light); font-style: italic;
+  padding: 12px 0 0; border-top: 1px solid var(--gold-light); margin-top: 20px;
+}
+
+.cta-section {
+  text-align: center; padding: 24px; background: var(--burgundy); color: #fff; margin: 30px 0 0;
+}
+.cta-section p { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; margin-bottom: 4px; }
+.cta-section .cta-date { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); }
+
+.footer { text-align: center; padding: 28px 40px 34px; background: var(--cream); }
+.footer .big-love {
+  font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--ink);
+  margin-bottom: 6px; line-height: 1.4;
+}
+.footer .big-love .heart { color: var(--burgundy); }
+
+@media (max-width: 700px) {
+  body { padding: 10px; }
+  .masthead { padding: 20px 20px 18px; }
+  .masthead h1 { font-size: 28px; letter-spacing: 1px; }
+  .edition-bar { padding: 8px 20px; font-size: 10px; }
+  .content { padding: 20px 20px 10px; }
+  .headline-section h2 { font-size: 24px; }
+  .updates-grid { grid-template-columns: 1fr; gap: 0; }
+  .updates-grid .grid-divider { display: none; }
+  .article h3 { font-size: 19px; }
+  .footer .big-love { font-size: 24px; }
+  .cal-grid { flex-direction: column; }
+  .cal-legend { width: 100%; flex-direction: row; flex-wrap: wrap; padding-top: 10px; }
+  .cal-footnotes { flex-direction: column; }
+  .cal-table td { height: 75px; }
+}
+</style>
+</head>
+<body>
+<div class="newspaper">
+
+  <div class="masthead">
+    <div class="masthead-top"><span>Founding Members Edition</span><span>Выпуск №1</span></div>
+    <h1>Co.<span>Creation</span> Club</h1>
+    <div class="masthead-subtitle">Со.Творчество с Анной Мисиек</div>
+  </div>
+  <div class="gold-rule"></div>
+  <div class="edition-bar">
+    <span>Апрель 2026</span>
+    <span class="edition-label">Газета Клуба</span>
+    <span>Для своих</span>
+  </div>
+
+  <div class="content">
+
+    <!-- 1. INTRO -->
+    <div class="headline-section">
+      <h2>Наши первые 3 месяца вместе пролетели с&nbsp;таким кайфом!</h2>
+      <p class="headline-intro">
+        Мы столько всего прожили и сделали вместе — стратсессии, воркшопы, онлайн нетворкинги, встречи в&nbsp;Москве, Париже и&nbsp;Мадриде, переосмысление подхода к&nbsp;жизненным силам с&nbsp;Машей, начали путь понимания своих паттернов и&nbsp;потребностей в&nbsp;личных финансах, поработали с&nbsp;несколькими прекрасными приглашенными спикерами и&nbsp;просто еженедельно заряжались и&nbsp;напитывались друг от&nbsp;друга. Многие увиделись лично, кто-то даже начал работать или делать совместные проекты. Очень горжусь нами и&nbsp;тем пространством, которое мы создали вместе!
+      </p>
+    </div>
+
+    <!-- 2. СОВЕТ ДИРЕКТОРОВ -->
+    <div class="article">
+      <span class="article-tag">Важное событие</span>
+      <h3>Совет Директоров — 10&nbsp;апреля в&nbsp;10:00</h3>
+      <p>Мы продолжаем двигаться дальше и важной частью совместного развития, конечно&nbsp;же, является ваша обратная связь. Поэтому время от времени мы будем проводить особую сессию — <strong>Совет Директоров</strong> — где сможем обсуждать форматы, темы, спикеров и всё, что наполняет это пространство. Делать его лучше, удобнее и полезнее для всех.</p>
+      <p>Я поделюсь своими идеями по развитию клуба, обсудим вместе важные моменты и&nbsp;примем решения. <strong>Это ваш клуб тоже — и&nbsp;ваш голос в&nbsp;нём имеет очень важное значение.</strong></p>
+      <p>Также на этой сессии сделаем первый нетворкинг с&nbsp;новыми участницами.</p>
+    </div>
+
+    <!-- 3. НОВЫЕ УЧАСТНИЦЫ -->
+    <div class="article">
+      <span class="article-tag-gold">Welcome to the Club</span>
+      <h3>Новые участницы и&nbsp;«Бонус&nbsp;+1»</h3>
+      <p>Со следующей недели к&nbsp;нам начнут присоединяться новые участницы. Несколько прекрасных девушек уже ждут возможности присоединиться и&nbsp;скоро мы начнем знакомиться. Наше пространство растёт — и&nbsp;вы тоже можете порекомендовать клуб кому-то из&nbsp;ваших знакомых, схожих с&nbsp;нами по ценностям.</p>
+      <div class="highlight">Если участница станет частью клуба по&nbsp;вашей рекомендации — в&nbsp;благодарность вам «бонус +1»: один бесплатный месяц для&nbsp;вас.</div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- 4. ФОКУС МЕСЯЦЕВ -->
+    <div class="focus-section">
+      <h3>Фокус следующих месяцев: Апрель — Июнь</h3>
+
+      <div class="focus-card">
+        <div class="focus-number">Фокус 1</div>
+        <h4>Практикумы по ИИ</h4>
+        <p>Начнем с Claude и&nbsp;базовых настроек, после перейдем к&nbsp;настройке агентов и&nbsp;Claude Code — чтобы высвободить у&nbsp;каждой из вас драгоценное время, сэкономить деньги и&nbsp;отладить процессы. Критически важный навык — чем быстрее сделаете своих помощников в&nbsp;реальных задачах, тем быстрее получите бесценные плоды: время, деньги, конкурентное преимущество!</p>
+      </div>
+
+      <div class="focus-card">
+        <div class="focus-number">Фокус 2 <span class="focus-wow">WOW!!!</span></div>
+        <h4>Speaking Club с&nbsp;Мариной Гончаровой</h4>
+        <p>Практикумам по речи, коммуникации, раскрепощению и&nbsp;проявленности — БЫТЬ!</p>
+        <p>Мы с вами много раз говорили об этом навыке и большинство хотят этот навык развивать!! Без преувеличения навык, нужный нам всем. От решения сложных ситуаций в&nbsp;личном или рабочем поле до эффективных выступлений и&nbsp;встреч, ведения блога и&nbsp;выращивания своего личного бренда.</p>
+        <p>Я провела переговоры по возможности личной работы для нашей группы! С очень крутым профессионалом по речи, коммуникации и&nbsp;раскрепощенности — <strong>Мариной Гончаровой</strong> — возможно кто-то ее уже знает, если нет обязательно ознакомьтесь с&nbsp;ее профилем! Она не только учит эффективной коммуникации, но делает это очень весело, в&nbsp;своем неповторимом стиле 😊</p>
+        <p><strong>16 апреля</strong> — Марина проведет в нашем клубе первый ознакомительный звонок — расскажет как и&nbsp;с&nbsp;чем мы сможем поработать следующие несколько месяцев и какие результаты сможем получить.</p>
+        <p>Там же вы сможете записаться в нашу новую рубрику — <strong>SPEAKING CLUB с&nbsp;Мариной!</strong></p>
+        <p>Стоимость занятий в Speaking Club будет за дополнительную плату, но я&nbsp;договариваюсь о&nbsp;спец цене для нашего клуба. Финальная стоимость будет зависеть от количества человек — чем больше нас будет, тем дешевле будет стоимость.</p>
+        <p>В таком формате она не работает пока еще ни с&nbsp;кем!! Вот такой вот эксклюзив )))</p>
+        <div class="date-badge">16 апреля — первый ознакомительный звонок</div>
+        <br>
+        <a href="https://www.instagram.com/ri.na.go/" target="_blank">Instagram Марины →</a>
+      </div>
+
+      <div class="continuing-card">
+        <h4>И конечно, продолжаем</h4>
+        <p>Работать над финансовой грамотностью и&nbsp;улучшать свои личные финансы, продолжать работать над состоянием, поддерживать друг друга, знакомиться с&nbsp;новыми участницами, проживать разные этапы и&nbsp;расти вместе!</p>
+      </div>
+    </div>
+
+    <!-- 5. КАЛЕНДАРЬ -->
+    <div class="calendar-section">
+      <h3>Расписание на апрель</h3>
+      <div class="cal-wrapper">
+        <div class="cal-grid">
+          <table class="cal-table">
+            <thead><tr><th>ПН</th><th>ВТ</th><th>СР</th><th>ЧТ</th><th>ПТ</th><th>СБ</th><th>ВС</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="empty"></td><td class="empty"></td>
+                <td><div class="cal-day">1</div></td><td><div class="cal-day">2</div></td><td><div class="cal-day">3</div></td><td><div class="cal-day">4</div></td><td><div class="cal-day">5</div></td>
+              </tr>
+              <tr>
+                <td><div class="cal-day">6</div></td><td><div class="cal-day">7</div></td><td><div class="cal-day">8</div></td><td><div class="cal-day">9</div></td>
+                <td style="position:relative;">
+                  <span class="cal-star">👭</span><div class="cal-day has-star">10</div>
+                  <div class="cal-badge cal-pink"><div class="cal-time"><span>🕙</span> 10:00</div><div class="cal-title">Совет Директоров<br>+ NDA Friday</div></div>
+                </td>
+                <td><div class="cal-day">11</div></td><td><div class="cal-day">12</div></td>
+              </tr>
+              <tr>
+                <td><div class="cal-day">13</div></td><td><div class="cal-day">14</div></td><td><div class="cal-day">15</div></td>
+                <td style="position:relative;">
+                  <span class="cal-star">⭐</span><div class="cal-day has-star">16</div>
+                  <div class="cal-badge cal-blue"><div class="cal-time"><span>🕛</span> 12:00</div><div class="cal-title">Special event:<br>Speaking Club</div><div class="cal-speaker">с Мариной Гончаровой</div></div>
+                </td>
+                <td><div class="cal-day">17</div><div class="cal-badge cal-yellow"><div class="cal-title">NDA Friday</div><div class="cal-sub">(распределение по парам)</div></div></td>
+                <td><div class="cal-day">18</div></td><td><div class="cal-day">19</div></td>
+              </tr>
+              <tr>
+                <td><div class="cal-day">20</div></td><td><div class="cal-day">21</div></td><td><div class="cal-day">22</div></td>
+                <td style="position:relative;">
+                  <span class="cal-star">🤖</span><div class="cal-day has-star">23</div>
+                  <div class="cal-badge cal-blue"><div class="cal-time"><span>🕙</span> 10:00</div><div class="cal-title">AI практикум.<br>Claude</div></div>
+                </td>
+                <td><div class="cal-day">24</div><div class="cal-badge cal-yellow"><div class="cal-title">NDA Friday</div><div class="cal-sub">(распределение по парам)</div></div></td>
+                <td><div class="cal-day">25</div></td><td><div class="cal-day">26</div></td>
+              </tr>
+              <tr>
+                <td><div class="cal-day">27</div></td><td><div class="cal-day">28</div></td>
+                <td style="position:relative;">
+                  <span class="cal-star">⭐</span><div class="cal-day has-star">29</div>
+                  <div class="cal-badge cal-pink"><div class="cal-time"><span>🕙</span> 10:00</div><div class="cal-title">Перезагрузка состояния</div><div class="cal-speaker">с Юлией Ворониной</div></div>
+                </td>
+                <td><div class="cal-day">30</div></td>
+                <td class="empty"></td><td class="empty"></td><td class="empty"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cal-legend">
+            <div class="cal-legend-item"><div class="cal-legend-swatch" style="background:#f0c4c8;"></div>Основные мероприятия</div>
+            <div class="cal-legend-item"><div class="cal-legend-swatch" style="background:#c8daf0;"></div>Акцент Сезона</div>
+            <div class="cal-legend-item"><div class="cal-legend-swatch" style="background:#f5e6a3;"></div>Доп. активности</div>
+            <div class="cal-legend-item"><span style="font-size:14px; width:18px; text-align:center; flex-shrink:0;">💰</span>Доп. оплата</div>
+            <div class="cal-legend-note"><span style="font-size:12px; flex-shrink:0;">🕐</span><span>Время по Франкфурту (Москва +1 час)</span></div>
+          </div>
+        </div>
+        <div class="cal-footnotes">
+          <div class="cal-fn-card cal-fn-border-pink">
+            <h4>● 10.04 Совет Директоров + NDA Friday</h4>
+            <p>Обсуждаем форматы, темы, спикеров и всё, что наполняет наше пространство. Поделюсь идеями по развитию клуба, обсудим важные моменты и примем решения вместе. Также — первый нетворкинг с новыми участницами.</p>
+          </div>
+          <div class="cal-fn-card cal-fn-border-blue">
+            <h4>⭐ 16.04 Speaking Club с Мариной Гончаровой 💰</h4>
+            <p>Первый ознакомительный звонок — Марина расскажет, как и с чем мы сможем поработать. Там же можно записаться в Speaking Club. Занятия за доп. плату, по спецусловиям для клуба.</p>
+            <p style="margin-top:4px;"><a href="https://www.instagram.com/ri.na.go/" target="_blank">Instagram Марины</a></p>
+          </div>
+          <div class="cal-fn-card cal-fn-border-rose">
+            <h4>⭐ 29.04 Перезагрузка состояния с Юлией Ворониной</h4>
+            <p>Executive Energy Coach (Лондон), основательница SelfState Lab. Growth Mindset, нервная система, осознанный переход из режима выживания в режим расширения. Теория + практики на встрече.</p>
+            <p style="margin-top:4px;"><a href="https://www.instagram.com/voroninatype/" target="_blank">Instagram Юлии</a></p>
+          </div>
+        </div>
+        <p style="font-size: 12px; color: #999; margin-top: 12px; text-align: center; font-style: italic;">Также внесено в наш общий Apple Calendar</p>
+      </div>
+    </div>
+
+    <!-- 6. ОБНОВЛЕНИЯ -->
+    <div class="updates-grid">
+      <div>
+        <div class="article">
+          <span class="article-tag">Ежемесячное участие</span>
+          <h3>Ежемесячная оплата</h3>
+          <p>Для того чтобы упростить логику участия в&nbsp;клубе (изначально формат оплаты по сезонам вызвал много недопонимания), я&nbsp;решила перейти на понятный всем формат ежемесячных платежей.</p>
+          <p>Как в&nbsp;фитнес-клубе: вы просто продолжаете участвовать помесячно, без привязки к&nbsp;трёхмесячным блокам. Темы и&nbsp;акценты будут меняться, но вам не нужно каждые 3&nbsp;месяца принимать решение «иду или не&nbsp;иду».</p>
+          <div class="price-block">
+            <span class="price-main">€100 в месяц</span>
+            <span class="price-rub">9,000 ₽ для тех, кто в&nbsp;России</span>
+          </div>
+          <p>Отдельная благодарность всем, кто уже поставил рекуррентные оплаты — one love ❤️‍🔥</p>
+          <div class="deadline-banner">Оплата за апрель —<br><strong>до 5 апреля</strong></div>
+        </div>
+      </div>
+
+      <div class="grid-divider"></div>
+
+      <div>
+        <div class="article">
+          <span class="article-tag">Членство</span>
+          <h3>Ежегодный членский взнос</h3>
+          <div class="founding-block">
+            <strong>Для вас как Founding Members клуба, ежегодный членский взнос остаётся зафиксированным навсегда.</strong><br><br>
+            Для новых участниц размер взноса будет выше — и будет расти с ростом клуба. Ваши условия зафиксированы на уровне входа.
+          </div>
+        </div>
+
+        <div class="article">
+          <span class="article-tag">Гибкость</span>
+          <h3>Возможность паузы — «Я&nbsp;В&nbsp;ДОМИКЕ»</h3>
+          <p>Если сейчас не получается активно участвовать — это абсолютно окей. Пауза — это не выход из&nbsp;клуба. Это возможность уделить время другим приоритетам и&nbsp;передохнуть, когда нужно. <strong>В&nbsp;течение года можно взять до 2&nbsp;месяцев заморозки</strong> и побыть «в&nbsp;домике». Просто напишите мне в&nbsp;личку.</p>
+          <p>И конечно, если вы понимаете, что по каким-либо причинам клуб сейчас не вписывается в&nbsp;вашу жизнь, вы можете спокойно принять решение выйти. Без обязательств и&nbsp;без неловкости — оставшись важной частью сообщества и&nbsp;построив ценные связи.</p>
+          <p class="doors-open">А двери всегда открыты! ♥</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footnote">* Если что-то не понятно по обновлениям формата оплаты и заморозки — просто напишите мне в личку, всё объясню.</div>
+
+  </div>
+
+  <div class="cta-section">
+    <p>До встречи на</p>
+    <div class="cta-date">Совете Директоров · 10 апреля · 10:00</div>
+  </div>
+
+  <div class="footer">
+    <div class="big-love">
+      Спасибо за первый сезон!<br>
+      Идём дальше!<br>
+      Люблю вас <span class="heart">♥</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
